@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope) {
+    /* widget controller */
+    var c = this;
+
+	//g_form is avaiable via the page from $scope. Making it shorter here.
+    var gform = $scope.page.g_form;
+
+    // 定义 sections 数据（用于 ng-repeat）
+    c.sections = [
+        { id: 1, name: 'Section 1' },
+        { id: 2, name: 'Section 2' },
+        { id: 3, name: 'Section 3' },
+        { id: 4, name: 'Section 4' },
+        { id: 5, name: 'Section 5' }
+    ];
+
+    // 动态生成 setSectionXVisible 方法
+    c.sections.forEach(function(section) {
+        c['setSection' + section.id + 'Visible'] = function() {
+            gform.setValue('current_section', section.id.toString());
+        };
+    });
+
+    // 首页按钮的独立方法（对应 <i class="glyphicon glyphicon-home"></i>）
+    c.setSection1Visible = function() {
+        gform.setValue('current_section', '1');
+    };
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.btn-breadcrumb .btn:not(:last-child):after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid white;
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  left: 100%;
+  z-index: 3;
+}
+.btn-breadcrumb .btn:not(:last-child):before {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid rgb(173, 173, 173);
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  margin-left: 1px;
+  left: 100%;
+  z-index: 3;
+}
+
+/** The Spacing **/
+.btn-breadcrumb .btn {
+  padding:6px 12px 6px 24px;
+  font-size:16px;
+}
+.btn-breadcrumb .btn:first-child {
+  padding:6px 6px 6px 10px;
+}
+.btn-breadcrumb .btn:last-child {
+  padding:6px 18px 6px 24px;
+}
+
+/** Default button **/
+.btn-breadcrumb .btn.btn-default:not(:last-child):after {
+  border-left: 10px solid #fff;
+}
+.btn-breadcrumb .btn.btn-default:not(:last-child):before {
+  border-left: 10px solid #ccc;
+}
+.btn-breadcrumb .btn.btn-default:hover:not(:last-child):after {
+  border-left: 10px solid #ebebeb;
+}
+.btn-breadcrumb .btn.btn-default:hover:not(:last-child):before {
+  border-left: 10px solid #adadad;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>sc_item_tab_controller</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>SC Item Tab Controller</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-26 07:40:44</sys_created_on>
+        <sys_id>cc7a28f483b5aa1034af11b6feaad36c</sys_id>
+        <sys_mod_count>13</sys_mod_count>
+        <sys_name>SC Item Tab Controller</sys_name>
+        <sys_package display_value="Demo2" source="x_1755581_demo2">52aa63648371aa1034af11b6feaad3a3</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Demo2">52aa63648371aa1034af11b6feaad3a3</sys_scope>
+        <sys_update_name>sp_widget_cc7a28f483b5aa1034af11b6feaad36c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-27 04:41:18</sys_updated_on>
+        <template><![CDATA[<div>
+  <div class="btn-group btn-breadcrumb">
+    <a ng-click="c.setSection1Visible()" class="btn btn-default"><i class="glyphicon glyphicon-home"></i></a>
+    <a ng-repeat="section in c.sections" 
+       ng-click="c['setSection' + section.id + 'Visible']()" 
+       class="btn btn-default">
+      {{section.name}}
+    </a>
+  </div>
+</div>]]></template>
+    </sp_widget>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>cc7a28f483b5aa1034af11b6feaad36c</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-26 07:40:44</sys_created_on>
+        <sys_id>4c7a28f483b5aa1034af11b6feaad370</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-26 07:40:44</sys_updated_on>
+        <table>sp_widget</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
